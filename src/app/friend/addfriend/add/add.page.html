@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion_buttons slot="start">
+      <ion-back-button defaultHref="/friend/addfriend"></ion-back-button>
+    </ion_buttons>
+    <ion-title>add</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <ion-list> -->
+    <!-- <ion-item> -->
+      <ion-avatar>
+        <ion-img [src]="linkfoto" class="center" (click)="ubahfoto()"></ion-img>
+      </ion-avatar>
+    <!-- </ion-item>
+    <ion-item> -->
+      {{nama}}
+    <!-- </ion-item> -->
+    <!-- <ion-item> -->
+      <ion-button color="primary" shape="round" (click)="addFriend()" *ngIf="friendFlag==0">
+        Add
+      </ion-button>
+      <ion-button color="primary" shape="round" (click)="removeFriend()" *ngIf="friendFlag==1">
+        Remove Friend
+      </ion-button>
+    <!-- </ion-item>
+  </ion-list> -->
+
+</ion-content>

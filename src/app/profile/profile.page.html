@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-avatar>
+        <ion-img [src]="linkfoto" class="center" (click)="ubahfoto()"></ion-img>
+      </ion-avatar>
+    </ion-item>
+    <ion-item>
+      Nama: {{this.firstname}} {{this.lastname}}
+    </ion-item>
+    <ion-item>
+      00000020006
+    </ion-item>
+    <ion-item>
+      <ion-button color="primary" shape="round" (click)="logout()">
+        Logout
+      </ion-button>
+    </ion-item>
+    <ion-item>
+      <ion-list>
+        <ion-item>My Feeds</ion-item>
+        <ion-item *ngFor="let data of locations">
+          Checked-in at {{data.lat}} ({{data.datetime}})
+        </ion-item>
+      </ion-list>
+    </ion-item>
+    <ion-item>
+      KESAN PESAN
+    </ion-item>
+  </ion-list>
+  <input type="file" *ngIf="isDesktop" #filePicker (change)="onFileChoose($event)"/>
+
+</ion-content>

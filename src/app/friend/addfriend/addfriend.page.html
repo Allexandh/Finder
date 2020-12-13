@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion_buttons slot="start">
+      <ion-back-button defaultHref="/friend"></ion-back-button>
+    </ion_buttons>
+    <ion-title>addfriend</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar (ionInput)="search($event)" placeholder="Type Email or Name"></ion-searchbar>
+  <ion-list>
+    <ion-item *ngFor="let data of searchData" [routerLink]="[data.key]">
+      <ion-label>{{data.firstname}} {{data.lastname}}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
