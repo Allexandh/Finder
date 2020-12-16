@@ -71,7 +71,7 @@ export class HomePage {
   ionViewDidEnter() {
     this.task = setInterval(() => {
       this.simpanLokasiBaru();
-    }, 10000);
+    }, 600000);
 
     this.fireAuth.user.subscribe((data => {
       if (data == null) {
