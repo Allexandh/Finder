@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>friend</ion-title>
+    <ion-title>My Friends</ion-title>
     <ion-buttons slot="primary">
       <ion-button routerLink="addfriend">
         +Friend
@@ -10,12 +10,13 @@
 </ion-header>
 
 <ion-content>
+  <ion-searchbar (ionInput)="search($event)" placeholder="Type Name"></ion-searchbar>
   <ion-list>
-    <ion-item *ngFor="let data of friendList" (click)="removeFriend(data.key)">
+    <ion-item *ngFor="let data of searchData" (click)="presentAlert(data.key)">
       <ion-avatar>
         <ion-img [src]="data.linkfoto" class="center"></ion-img>
       </ion-avatar>
-      <ion-label>{{data.nama}}</ion-label>
+      <ion-label style="padding-left:10px;">{{data.nama}}</ion-label>
     </ion-item>
   </ion-list>
 </ion-content>

@@ -1,39 +1,129 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>profile</ion-title>
+    <ion-title>My Profile</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item>
+  <ion-row>
+    <ion-col class="ion-text-center">
       <ion-avatar>
         <ion-img [src]="linkfoto" class="center" (click)="ubahfoto()"></ion-img>
       </ion-avatar>
-    </ion-item>
-    <ion-item>
-      Nama: {{this.firstname}} {{this.lastname}}
-    </ion-item>
-    <ion-item>
-      00000020006
-    </ion-item>
-    <ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col class="ion-text-center">{{this.firstname}} {{this.lastname}}</ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col class="ion-text-center">00000020006</ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col class="ion-text-center"></ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col class="ion-text-center">
       <ion-button color="primary" shape="round" (click)="logout()">
         Logout
       </ion-button>
-    </ion-item>
-    <ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col class="ion-text-center">
       <ion-list>
         <ion-item>My Feeds</ion-item>
-        <ion-item *ngFor="let data of locations">
-          Checked-in at {{data.lat}} ({{data.datetime}})
+        <ion-item *ngFor="let data of locations" (click)=presentAlert(data.key)>
+          Checked-in at '{{data.location}}' ({{data.datetime}})
         </ion-item>
       </ion-list>
-    </ion-item>
-    <ion-item>
-      KESAN PESAN
-    </ion-item>
-  </ion-list>
-  <input type="file" *ngIf="isDesktop" #filePicker (change)="onFileChoose($event)"/>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+
+      <div>
+        KESAN PESAN
+      </div>
+      <div>
+        Karena kelasnya online, jadi ga bener - bener belajar saat kelas. Tiap sore jam 6 selalu dikasih podcast
+        bermanfaat, selalu saya dengerin kalo sempet.
+        Tetapi saya masih bingung kenapa harus belajar ini, karna cukup tertinggal dengan universitas lain, dan tidak
+        sesuai dengan nama mata kuliahnya sendiri.
+      </div>
+
+      <div>
+        CARA MENGGUNAKAN APLIKASI:
+      </div>
+
+      <div>
+        1. Register dan Login udah pasti tahu caranya.
+      </div>
+
+      <div>
+        2. Kalau mau tambah teman, pindah ke tab kiri (friend) lalu tekan tombol '+Friend', lalu bisa disearch
+        menggunakanemail atau nama orangnya, kalau sudah ketemu add saja, tapi kalau sudah jadi teman, bisa dihapus
+        langsung, kalau ketemu akun diri sendiri, tombolnya berubah menjadi 'Profile'.
+      </div>
+
+      <div>
+        3. Kalau Mau Hapus teman, bisa juga di tab kiri (friend), tinggal diklik untuk ngapus teman.
+      </div>
+
+      <div>
+        4. Untuk Bagian Profile, Gambarnya kalau dipencet bakal muncul modal buat foto atau buka gallery. Kalau udah
+        foto
+        atau milih gambar dari gallery, tinggal tungguin sebentar, terus di refresh biar keubah fotonya.
+      </div>
+
+      <div>
+        5. Kalau mau logout, tinggal pencet tombol 'logout', nanti juga keluar terus pindah ke halaman login, refresh
+        biar
+        ga error.
+      </div>
+
+      <div>
+        6. kalau mau hapus lokasi, tekan aja yang ada di list 'My Feeds', nanti muncul alert mau dihapus atau enggak,
+        kalau mau pencet oke aja, terus nanti kehapus.
+      </div>
+
+      <div>
+        7. Kalau mau kasih lokasi baru, pindah ke tab tengah (home) terus tekan di suatu posisi/lokasi di map, setelah
+        itu
+        pencet tombol check-in di atas, nanti muncul modal dibawah. Lalu diminta masukkin nama lokasi sekarang, terus
+        pencet tombol 'Check In', nanti bakal muncul toast kalau lokasi berhasil ditambah, terus refresh aja buat liat
+        perubahan, lokasi user sekarang itu berwarna oren.
+      </div>
+
+      <div>
+        8. Kalau mau liat lokasi teman di mana sekarang, di mapnya keliatan marker warna merah, kalau dipencet bakal
+        keliatan nama lokasi mereka sekarang.
+      </div>
+
+      <div>
+        9. Kalau mau liat lokasi sekarang user, tinggal pencet tombol 'Current Location', nanti mapnya bakal pindah ke
+        lokasi user sekarang.
+      </div>
+
+      <div>
+        CODE:
+      </div>
+
+      <div>
+        Codingannya dibikin sendiri tanpa bantuan siapa - siapa.
+        KECUALI, codingan yang dipake buat tugas akhir (UAS teori mobile) yang kelompok, ada codingan yang saya ambil
+        dari
+        sana kayak marker map, sama search terus sisanya nyari - nyari
+        pencerahan dari internet terus dari modul weekly mobile.
+      </div>
+
+
+    </ion-col>
+  </ion-row>
+
+  <input type="file" *ngIf="isDesktop" #filePicker (change)="onFileChoose($event)" />
 
 </ion-content>

@@ -49,6 +49,10 @@ export class AuthService {
     return this.db.list('/friends').remove(key);
   }
 
+  removeLocation(key: any) {
+    return this.db.list('/locations').remove(key);
+  }
+
   checkFriend(): AngularFireList<Friend> {
     return this.friendRef;
   }
@@ -170,7 +174,26 @@ export class AuthService {
     });
   }
 
-  newLocation(value: any, uid: any): any {
+  newLocation2(uid: any, newLocName:any): any {
+
+
+    let date = new Date().toLocaleDateString();
+    let time = new Date().toLocaleTimeString();
+
+    const data: any = {
+      lat: newLocName.lat,
+      lng: newLocName.lng,
+      uid: uid,
+      location: newLocName.lokasi,
+      datetime: date + " " + time,
+    }
+    console.log(data);
+    return this.db.list('/locations').push(data);
+  }
+
+
+
+  newLocation(value: any, uid: any, newLocName:any): any {
 
     value = value.replace('(', '');
     value = value.replace(')', '');
@@ -184,7 +207,7 @@ export class AuthService {
       lat: value[0],
       lng: value[1],
       uid: uid,
-      lokasi: "di lippo",
+      location: newLocName,
       datetime: date + " " + time,
     }
     console.log(data);
@@ -238,7 +261,7 @@ export class AuthService {
         this.fireAuth.signOut()
           .then(() => {
             // console.log('log out');
-            // resolve();
+            resolve();
           }).catch((error) => {
             reject();
           });

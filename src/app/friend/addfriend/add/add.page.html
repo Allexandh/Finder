@@ -3,28 +3,42 @@
     <ion_buttons slot="start">
       <ion-back-button defaultHref="/friend/addfriend"></ion-back-button>
     </ion_buttons>
-    <ion-title>add</ion-title>
+    <ion-title>Add</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <!-- <ion-list> -->
-    <!-- <ion-item> -->
+  <ion-card>
+
+    <ion-card-content>
       <ion-avatar>
-        <ion-img [src]="linkfoto" class="center" (click)="ubahfoto()"></ion-img>
+        <ion-img [src]="linkfoto"></ion-img>
       </ion-avatar>
-    <!-- </ion-item>
-    <ion-item> -->
-      {{nama}}
-    <!-- </ion-item> -->
-    <!-- <ion-item> -->
-      <ion-button color="primary" shape="round" (click)="addFriend()" *ngIf="friendFlag==0">
-        Add
-      </ion-button>
-      <ion-button color="primary" shape="round" (click)="removeFriend()" *ngIf="friendFlag==1">
-        Remove Friend
-      </ion-button>
-    <!-- </ion-item>
-  </ion-list> -->
+
+      <ion-row>
+        <ion-col class="ion-text-center" style="font-size: 1.6rem;color:'white;'">{{nama}}</ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <div *ngIf="isUser == 0">
+            <ion-button color="primary" shape="round" (click)="addFriend()" *ngIf="friendFlag==0">
+              Add
+            </ion-button>
+            <ion-button color="primary" shape="round" (click)="removeFriend()" *ngIf="friendFlag==1">
+              Remove Friend
+            </ion-button>
+          </div>
+          <div *ngIf="isUser == 1">
+            <ion-button color="primary" shape="round" routerLink="/profile">
+              Profile
+            </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+
+    </ion-card-content>
+  </ion-card>
+
 
 </ion-content>
