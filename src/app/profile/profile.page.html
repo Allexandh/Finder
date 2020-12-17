@@ -41,19 +41,22 @@
       </ion-list>
     </ion-col>
   </ion-row>
-<!--
+
 
   <ion-row>
     <ion-col>
-      <div>
-        KESAN PESAN
+      <div *ngIf="flagUser == 1">
+        <div>
+          KESAN PESAN
+        </div>
+        <div>
+          Karena kelasnya online, jadi ga bener - bener belajar saat kelas. Tiap sore jam 6 selalu dikasih podcast
+          bermanfaat, selalu saya dengerin kalo sempet.
+          Tetapi saya masih bingung kenapa harus belajar ini, karna cukup tertinggal dengan universitas lain, dan tidak
+          sesuai dengan nama mata kuliahnya sendiri.
+        </div>
       </div>
-      <div>
-        Karena kelasnya online, jadi ga bener - bener belajar saat kelas. Tiap sore jam 6 selalu dikasih podcast
-        bermanfaat, selalu saya dengerin kalo sempet.
-        Tetapi saya masih bingung kenapa harus belajar ini, karna cukup tertinggal dengan universitas lain, dan tidak
-        sesuai dengan nama mata kuliahnya sendiri.
-      </div>
+
 
       <div>
         CARA MENGGUNAKAN APLIKASI:
@@ -65,7 +68,7 @@
 
       <div>
         2. Kalau mau tambah teman, pindah ke tab kiri (friend) lalu tekan tombol '+Friend', lalu bisa disearch
-        menggunakanemail atau nama orangnya, kalau sudah ketemu add saja, tapi kalau sudah jadi teman, bisa dihapus
+        menggunakan email atau nama orangnya, kalau sudah ketemu add saja, tapi kalau sudah jadi teman, bisa dihapus
         langsung, kalau ketemu akun diri sendiri, tombolnya berubah menjadi 'Profile'.
       </div>
 
@@ -86,7 +89,7 @@
       </div>
 
       <div>
-        6. kalau mau hapus lokasi, tekan aja yang ada di list 'My Feeds', nanti muncul alert mau dihapus atau enggak,
+        6. Kalau mau hapus lokasi, tekan aja yang ada di list 'My Feeds', nanti muncul alert mau dihapus atau enggak,
         kalau mau pencet oke aja, terus nanti kehapus.
       </div>
 
@@ -123,7 +126,7 @@
 
     </ion-col>
   </ion-row>
--->
+
   <input type="file" *ngIf="isDesktop" #filePicker (change)="onFileChoose($event)" />
 
 </ion-content>

@@ -283,11 +283,7 @@ export class HomePage {
       this.curLoc = mapsMouseEvent.latLng.toString();
       this.infoWindow.open(this.map)
     })
-
-    // });
-
-
-
+    
   }
 
   newLocation2(newLocName: any) {

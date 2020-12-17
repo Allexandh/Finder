@@ -34,6 +34,8 @@ export class ProfilePage implements OnInit {
   counterData: any = 0;
   flagCounter: any = 0;
 
+  flagUser: any = 0;
+
   constructor(
     private authSrv: AuthService,
     private fireAuth: AngularFireAuth,
@@ -96,6 +98,10 @@ export class ProfilePage implements OnInit {
           this.userid = data.uid;
           this.authSrv.getData(this.userid).then(
             (res) => {
+              if(this.userid == 'SbpdoyvUNvODCwSKyEfgb73YVM13'){
+                this.flagUser = 1;
+                console.log("Selamat Datang")
+              }
               this.firstname = res.firstname;
               this.lastname = res.lastname;
               this.email = res.email;
