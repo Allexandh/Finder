@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NavController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -14,25 +14,25 @@ export class RegisterPage implements OnInit {
   errorMessage: string = '';
   successMessage: string = '';
 
-  validation_messages ={
-    'email' :[
-      {type: 'required', message: 'Email is required'},
-      {type: 'pattern', message: 'Enter a valid email'}
+  validation_messages = {
+    'email': [
+      { type: 'required', message: 'Email is required' },
+      { type: 'pattern', message: 'Enter a valid email' }
     ],
-    'password' :[
-      {type: 'required', message: 'Password is required'},
-      {type: 'minlength', message: 'Password must be at least 5 characters long'}
+    'password': [
+      { type: 'required', message: 'Password is required' },
+      { type: 'minlength', message: 'Password must be at least 5 characters long' }
     ],
-    'confirmpassword' :[
-      {type: 'required', message: 'Confirm Password is required'},
-      {type: 'minlength', message: 'Password must be at least 5 characters long'}
+    'confirmpassword': [
+      { type: 'required', message: 'Confirm Password is required' },
+      { type: 'minlength', message: 'Password must be at least 5 characters long' }
     ],
-    'firstname' :[
-      {type: 'required', message: 'First Name is required'},
+    'firstname': [
+      { type: 'required', message: 'First Name is required' },
       // {type: 'pattern', message: 'Enter a valid email'}
     ],
-    'lastname' :[
-      {type: 'required', message: 'Last Name is required'},
+    'lastname': [
+      { type: 'required', message: 'Last Name is required' },
       // {type: 'pattern', message: 'Enter a valid email'}
     ],
   }
@@ -41,6 +41,8 @@ export class RegisterPage implements OnInit {
     private navCtrl: NavController,
     private authSrv: AuthService,
     private formBuilder: FormBuilder,
+    private toastCtrl: ToastController,
+
   ) { }
 
   ngOnInit() {
@@ -68,20 +70,36 @@ export class RegisterPage implements OnInit {
     });
   }
 
-  tryRegister(value){
-    this.authSrv.registerUser(value)
-    .then(res => {
-      console.log(res);
-      this.errorMessage = '';
-      this.successMessage = "Your account has been created. Please Log In."
-    }, err=> {
-      console.log(err);
-      this.errorMessage = err.message;
-      this.successMessage = '';
-    })
+  async presentToast() {
+    const toast = await this.toastCtrl.create({
+      message: 'Your account has been created. Please Log In.',
+      duration: 2000,
+      color: 'warning',
+    });
+    toast.present();
   }
 
-  goLoginPage(){
+  tryRegister(value) {
+    if (value.password != value.confirmpassword) {
+      this.errorMessage = "Password Berbeda";
+    } else {
+      this.authSrv.registerUser(value)
+        .then(res => {
+          this.errorMessage = '';
+          // this.successMessage = "Your account has been created. Please Log In."
+          this.presentToast();
+          this.validation_form.reset();
+          this.goLoginPage();
+
+        }, err => {
+          this.errorMessage = err.message;
+          this.successMessage = '';
+        })
+    }
+
+  }
+
+  goLoginPage() {
     this.navCtrl.navigateBack('/login');
   }
 

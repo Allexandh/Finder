@@ -58,12 +58,27 @@ export class HomePage {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position: Position) => {
 
-          let pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-            lokasi: "Lokasi Baru"
-          };
-          this.newLocation2(pos);
+        let pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+          lokasi: "Lokasi Baru"
+        };
+        this.newLocation2(pos);
+      });
+    }
+  }
+
+  currectLocationNewUser: any = [];
+
+  current() {
+    if (navigator.geolocation) {
+
+      navigator.geolocation.getCurrentPosition((position: Position) => {
+        this.currectLocationNewUser = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+
       });
     }
   }
@@ -98,7 +113,8 @@ export class HomePage {
               }
             });
             if (this.flagLokasi == 0) {
-              this.initMap(this.position, this.locs);
+              this.current();
+              this.initMap(this.currectLocationNewUser, this.locs);
             } else {
               this.initMap(this.position, this.locs);
             }
